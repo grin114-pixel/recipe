@@ -1,0 +1,43 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --orange: #FF6B35;
+  --orange-light: #FF8C5A;
+  --orange-pale: #FFF0EB;
+  --orange-dark: #E55A27;
+  --text: #2D2D2D;
+  --text-muted: #888;
+  --bg: #FAFAFA;
+  --card-bg: #FFFFFF;
+  --border: #F0E8E4;
+  --shadow: 0 2px 12px rgba(255, 107, 53, 0.1);
+  --shadow-md: 0 4px 20px rgba(255, 107, 53, 0.18);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+input, textarea { font-family: inherit; }
