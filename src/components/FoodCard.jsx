@@ -32,21 +32,26 @@ export default function FoodCard({ food, onEdit, onDelete, onViewRecipe }) {
 
         <div className="card-actions">
           {food.recipe && (
-            <button className="btn-recipe" onClick={() => onViewRecipe(food)}>
-              <BookOpen size={14} />
-              레시피
+            <button
+              type="button"
+              className="btn-recipe"
+              onClick={() => onViewRecipe(food)}
+              title="레시피"
+              aria-label="레시피 보기"
+            >
+              <BookOpen size={14} aria-hidden />
             </button>
           )}
           <div className="card-icon-actions">
             <button className="icon-btn edit" onClick={() => onEdit(food)} title="수정">
-              <Pencil size={16} />
+              <Pencil size={14} />
             </button>
             <button
               className={`icon-btn delete ${confirmDelete ? 'confirm' : ''}`}
               onClick={handleDelete}
               title={confirmDelete ? '한 번 더 누르면 삭제' : '삭제'}
             >
-              <Trash2 size={16} />
+              <Trash2 size={14} />
             </button>
           </div>
         </div>
