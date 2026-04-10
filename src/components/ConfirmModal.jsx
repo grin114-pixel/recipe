@@ -1,7 +1,7 @@
 import { X } from 'lucide-react'
 
 export default function ConfirmModal({
-  title = '확인',
+  title,
   message = '진행할까요?',
   confirmText = '확인',
   cancelText = '취소',
@@ -12,8 +12,8 @@ export default function ConfirmModal({
   return (
     <div className="modal-overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
       <div className="modal-box confirm-modal-box">
-        <div className="confirm-modal-header">
-          <h2 className="confirm-modal-title">{title}</h2>
+        <div className={`confirm-modal-header ${title ? '' : 'confirm-modal-header--no-title'}`}>
+          {title ? <h2 className="confirm-modal-title">{title}</h2> : null}
           <button type="button" className="icon-btn" onClick={onClose} aria-label="닫기">
             <X size={22} />
           </button>

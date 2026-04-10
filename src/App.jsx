@@ -225,11 +225,9 @@ export default function App() {
       )}
       {deleteTarget && (
         <ConfirmModal
-          title="삭제"
           message="삭제할까요?"
           cancelText="취소"
           confirmText="삭제"
-          danger
           onClose={() => setDeleteTarget(null)}
           onConfirm={handleConfirmDelete}
         />
