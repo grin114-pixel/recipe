@@ -1,18 +1,6 @@
-import { useState } from 'react'
 import { Pencil, Trash2, BookOpen } from 'lucide-react'
 
-export default function FoodCard({ food, onEdit, onDelete, onViewRecipe }) {
-  const [confirmDelete, setConfirmDelete] = useState(false)
-
-  const handleDelete = () => {
-    if (confirmDelete) {
-      onDelete(food.id)
-    } else {
-      setConfirmDelete(true)
-      setTimeout(() => setConfirmDelete(false), 2500)
-    }
-  }
-
+export default function FoodCard({ food, onEdit, onRequestDelete, onViewRecipe }) {
   return (
     <div className="food-card">
       {food.image_url ? (
@@ -31,6 +19,19 @@ export default function FoodCard({ food, onEdit, onDelete, onViewRecipe }) {
         </div>
 
         <div className="card-actions">
+          <div className="card-icon-actions">
+            <button className="icon-btn edit" onClick={() => onEdit(food)} title="수정">
+              <Pencil size={14} />
+            </button>
+            <button
+              className="icon-btn delete"
+              onClick={() => onRequestDelete(food)}
+              title="삭제"
+              aria-label="삭제"
+            >
+              <Trash2 size={14} />
+            </button>
+          </div>
           {food.recipe && (
             <button
               type="button"
@@ -42,18 +43,6 @@ export default function FoodCard({ food, onEdit, onDelete, onViewRecipe }) {
               <BookOpen size={14} aria-hidden />
             </button>
           )}
-          <div className="card-icon-actions">
-            <button className="icon-btn edit" onClick={() => onEdit(food)} title="수정">
-              <Pencil size={14} />
-            </button>
-            <button
-              className={`icon-btn delete ${confirmDelete ? 'confirm' : ''}`}
-              onClick={handleDelete}
-              title={confirmDelete ? '한 번 더 누르면 삭제' : '삭제'}
-            >
-              <Trash2 size={14} />
-            </button>
-          </div>
         </div>
       </div>
     </div>

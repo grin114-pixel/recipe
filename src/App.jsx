@@ -4,6 +4,7 @@ import { useFoods } from './hooks/useFoods'
 import FoodCard from './components/FoodCard'
 import FoodModal from './components/FoodModal'
 import RecipeModal from './components/RecipeModal'
+import ConfirmModal from './components/ConfirmModal'
 import './App.css'
 
 const TABS = [
@@ -67,12 +68,13 @@ function ChefLogo() {
 }
 
 export default function App() {
-  const { foods, loading, addFood, updateFood, deleteFood, shuffleFoods } = useFoods()
+  const { foods, loading, addFood, updateFood, deleteFood, shuffleFoods, refetch } = useFoods()
   const [activeTab, setActiveTab] = useState('today')
   const [showFoodModal, setShowFoodModal] = useState(false)
   const [editFood, setEditFood] = useState(null)
   const [recipeFood, setRecipeFood] = useState(null)
   const [searchQuery, setSearchQuery] = useState('')
+  const [deleteTarget, setDeleteTarget] = useState(null)
 
   const baseList =
     activeTab === 'recipe'
@@ -106,6 +108,18 @@ export default function App() {
   const handleCloseModal = () => {
     setShowFoodModal(false)
     setEditFood(null)
+  }
+
+  const handleRequestDelete = (food) => {
+    setDeleteTarget(food)
+  }
+
+  const handleConfirmDelete = async () => {
+    if (!deleteTarget) return
+    await deleteFood(deleteTarget.id)
+    // 탭 간 동기화/캐시 이슈 방지: 서버 기준으로 다시 로드
+    await refetch()
+    setDeleteTarget(null)
   }
 
   return (
@@ -185,7 +199,7 @@ export default function App() {
                 key={food.id}
                 food={food}
                 onEdit={handleEdit}
-                onDelete={deleteFood}
+                onRequestDelete={handleRequestDelete}
                 onViewRecipe={setRecipeFood}
               />
             ))}
@@ -208,6 +222,17 @@ export default function App() {
       )}
       {recipeFood && (
         <RecipeModal food={recipeFood} onClose={() => setRecipeFood(null)} />
+      )}
+      {deleteTarget && (
+        <ConfirmModal
+          title="삭제"
+          message="삭제할까요?"
+          cancelText="취소"
+          confirmText="삭제"
+          danger
+          onClose={() => setDeleteTarget(null)}
+          onConfirm={handleConfirmDelete}
+        />
       )}
     </div>
   )

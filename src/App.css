@@ -250,8 +250,12 @@
 .card-actions {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 4px;
+}
+
+.card-actions .btn-recipe {
+  margin-left: auto;
 }
 
 .btn-recipe {
@@ -276,7 +280,6 @@
 .card-icon-actions {
   display: flex;
   gap: 4px;
-  margin-left: auto;
 }
 
 .icon-btn {
@@ -301,12 +304,6 @@
   background: #FEE2E2;
   border-color: #FECACA;
   color: #EF4444;
-}
-
-.icon-btn.delete.confirm {
-  background: #FEE2E2;
-  color: #EF4444;
-  animation: pulse 0.4s ease;
 }
 
 /* ===== FAB ===== */
@@ -520,9 +517,10 @@
 }
 
 .textarea {
-  resize: vertical;
+  resize: none;
   min-height: 100px;
   line-height: 1.6;
+  overflow: hidden;
 }
 
 .checkbox-row {
@@ -590,6 +588,14 @@
   margin-top: 4px;
 }
 
+.btn-primary.danger {
+  background: #EF4444;
+}
+
+.btn-primary.danger:hover {
+  background: #DC2626;
+}
+
 .btn-primary:hover {
   background: var(--orange-dark);
 }
@@ -603,6 +609,25 @@
   cursor: not-allowed;
 }
 
+.btn-secondary {
+  width: 100%;
+  padding: 14px;
+  background: #F2F2F2;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, transform 0.15s;
+}
+
+.btn-secondary:hover {
+  background: #EDEDED;
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
 /* ===== RECIPE MODAL ===== */
 .recipe-text {
   font-size: 15px;
@@ -610,6 +635,40 @@
   color: var(--text);
   white-space: pre-wrap;
   word-break: keep-all;
+}
+
+/* ===== CONFIRM MODAL ===== */
+.confirm-modal-box {
+  border-radius: var(--radius);
+  max-width: 420px;
+  margin: auto 16px;
+  padding: 18px 16px 16px;
+}
+
+.confirm-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.confirm-modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.confirm-modal-message {
+  color: var(--text);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.confirm-modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 /* ===== ANIMATIONS ===== */

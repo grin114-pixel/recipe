@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { X, Camera, Loader2 } from 'lucide-react'
 import { compressAndUpload, deleteImage } from '../lib/imageUtils'
 
@@ -12,7 +12,20 @@ export default function FoodModal({ onClose, onSave, initialData }) {
   const [uploading, setUploading] = useState(false)
   const [saving, setSaving] = useState(false)
   const fileRef = useRef()
+  const recipeRef = useRef(null)
   const oldImageUrl = initialData?.image_url || null
+
+  const resizeRecipe = () => {
+    const el = recipeRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${el.scrollHeight}px`
+  }
+
+  useEffect(() => {
+    if (!hasRecipe) return
+    resizeRecipe()
+  }, [hasRecipe, recipe])
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0]
@@ -109,8 +122,10 @@ export default function FoodModal({ onClose, onSave, initialData }) {
           </div>
           <div className="form-group">
             <textarea
+              ref={recipeRef}
               value={recipe}
               onChange={(e) => setRecipe(e.target.value)}
+              onInput={resizeRecipe}
               placeholder="레시피를 입력하세요"
               className="text-input textarea"
               disabled={!hasRecipe}
