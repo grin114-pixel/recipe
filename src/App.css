@@ -196,6 +196,10 @@
   border: 1.5px solid var(--border);
 }
 
+.food-card.clickable {
+  cursor: pointer;
+}
+
 .food-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
@@ -254,11 +258,11 @@
   gap: 4px;
 }
 
-.card-actions .btn-recipe {
+.card-actions .recipe-indicator {
   margin-left: auto;
 }
 
-.btn-recipe {
+.recipe-indicator {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,7 +276,7 @@
   transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.btn-recipe:hover {
+.recipe-indicator:hover {
   background: #FFF0EB;
   border-color: #FFD9C9;
 }
