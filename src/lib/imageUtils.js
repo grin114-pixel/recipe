@@ -42,10 +42,6 @@ async function compressFile(file) {
 }
 
 export async function compressAndUpload(file) {
-  if (!import.meta.env.VITE_FIREBASE_STORAGE_BUCKET) {
-    throw new Error('Firebase Storage 환경 변수(VITE_FIREBASE_*)가 설정되지 않았습니다.')
-  }
-
   const blob = await compressFile(file)
   const name = `${Date.now()}_${safeBaseName(file.name)}`
   const fileName = `foods/${name}`
