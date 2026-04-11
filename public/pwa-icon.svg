@@ -7,7 +7,12 @@
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="112" fill="url(#yummyBg)"/>
-  <!-- Chef toque: single white silhouette (crown + band) -->
-  <path fill="#FFFFFF" d="M108 418V326C108 168 198 52 256 52S404 168 404 326v92H108z"/>
-  <path fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" opacity="0.45" d="M256 96v210M200 130v176M312 130v176"/>
+  <!-- Toque: 3 lobes (양 옆 + 가운데 높음), 아래 밴드 -->
+  <path fill="#FFFFFF" d="M80 418V356c0-81 20-146 65-181 15-45 40-67 67-57 10-30 28-42 44-42 16 0 34 12 44 42 27-10 52 12 67 57 45 35 65 100 65 181v62H80z"/>
+  <g fill="none" stroke="#E85A28" stroke-width="9" stroke-linecap="round" opacity="0.4">
+    <path d="M220 108v268"/>
+    <path d="M256 86v298"/>
+    <path d="M292 108v268"/>
+  </g>
+  <path fill="none" stroke="#F5C4A8" stroke-width="5" stroke-linecap="round" opacity="0.5" d="M108 352h296"/>
 </svg>

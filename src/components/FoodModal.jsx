@@ -37,7 +37,9 @@ export default function FoodModal({ onClose, onSave, initialData }) {
       const url = await compressAndUpload(file)
       setImageUrl(url)
     } catch (err) {
-      alert('이미지 업로드에 실패했습니다.')
+      const msg = err?.message || err?.code || String(err)
+      console.error('이미지 업로드 실패:', err)
+      alert(`이미지 업로드에 실패했습니다.\n${msg}`)
     } finally {
       setUploading(false)
     }
