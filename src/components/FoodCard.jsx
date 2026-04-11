@@ -1,6 +1,38 @@
+import { useRef, useLayoutEffect, useCallback } from 'react'
 import { Pencil, Trash2, BookOpen } from 'lucide-react'
 
+const TITLE_FONT_MAX = 14.4
+const TITLE_FONT_MIN = 8
+
+function useFitCardTitle(name) {
+  const titleRef = useRef(null)
+  const rowRef = useRef(null)
+
+  const fit = useCallback(() => {
+    const el = titleRef.current
+    if (!el) return
+    el.style.fontSize = `${TITLE_FONT_MAX}px`
+    let size = TITLE_FONT_MAX
+    while (size > TITLE_FONT_MIN && el.scrollWidth > el.clientWidth) {
+      size -= 0.25
+      el.style.fontSize = `${size}px`
+    }
+  }, [name])
+
+  useLayoutEffect(() => {
+    fit()
+    const row = rowRef.current
+    if (!row || typeof ResizeObserver === 'undefined') return undefined
+    const ro = new ResizeObserver(() => fit())
+    ro.observe(row)
+    return () => ro.disconnect()
+  }, [fit])
+
+  return { titleRef, rowRef }
+}
+
 export default function FoodCard({ food, onEdit, onRequestDelete, onViewRecipe }) {
+  const { titleRef, rowRef } = useFitCardTitle(food.name)
   const isRecipe = !!food.recipe
 
   const openRecipe = () => {
@@ -33,8 +65,10 @@ export default function FoodCard({ food, onEdit, onRequestDelete, onViewRecipe }
       )}
 
       <div className="card-body">
-        <div className="card-title-row">
-          <h3 className="card-title">{food.name}</h3>
+        <div className="card-title-row" ref={rowRef}>
+          <h3 className="card-title" ref={titleRef} title={food.name}>
+            {food.name}
+          </h3>
         </div>
 
         <div className="card-actions">

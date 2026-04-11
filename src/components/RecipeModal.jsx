@@ -8,7 +8,7 @@ export default function RecipeModal({ food, onClose }) {
     >
       <div className="modal-box recipe-modal-box">
         <div className="recipe-modal-header-row">
-          <h2 className="recipe-title">📝 {food.name} 레시피</h2>
+          <h2 className="recipe-title">📝 {food.name}</h2>
           <button type="button" className="icon-btn recipe-modal-close" onClick={onClose} aria-label="닫기">
             <X size={22} />
           </button>

@@ -7,14 +7,6 @@
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="112" fill="url(#yummyBg)"/>
-  <g fill="none" stroke="#FFFFFF" stroke-width="18" stroke-linecap="round" opacity="0.95">
-    <path d="M176 118c-18 22-18 48 0 70"/>
-    <path d="M256 98c-18 22-18 48 0 70"/>
-    <path d="M336 118c-18 22-18 48 0 70"/>
-  </g>
-  <g fill="#FFFFFF" transform="translate(0, 28)">
-    <path d="M256 142c-42 0-80 26-94 66-12-4-26-8-40-4-30 8-48 40-36 68-48 24-76 84-56 136l20 34c30 52 88 86 154 90 66-4 124-38 154-90l20-34c20-52-8-112-56-136 12-28-6-60-36-68-14-4-28 0-40 4-14-40-52-66-94-66z"/>
-    <path d="M162 268v118c0 22 18 40 40 40h196c22 0 40-18 40-40V268" fill="none" stroke="#FFFFFF" stroke-width="24" stroke-linejoin="round"/>
-    <path d="M196 328h196" fill="none" stroke="#FFFFFF" stroke-width="22" stroke-linecap="round" opacity="0.85"/>
-  </g>
+  <path fill="#FFFFFF" d="M108 418V326C108 168 198 52 256 52S404 168 404 326v92H108z"/>
+  <path fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="round" opacity="0.45" d="M256 96v210M200 130v176M312 130v176"/>
 </svg>
